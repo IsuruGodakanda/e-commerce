@@ -34,7 +34,7 @@ const Rating = ({ value, text, color }) => {
           className={value >= 5 ? 'fas fa-star' : value >= 4.5 ? 'fas fa-star-half-alt' : 'far fa-star'}
         />
       </span>
-      <span>{text && text}</span>
+      <span>{text && `${text} reviews`}</span>
     </div>
   )
 }
