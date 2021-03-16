@@ -8,7 +8,9 @@
     "start": "node backend/server",
     "server": "nodemon backend/server",
     "client": "yarn --cwd frontend start",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": "https://github.com/IsuruGodakanda/e-commerce",
   "author": "Isuru <isuru.g@aeturnum.com>",
