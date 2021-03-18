@@ -11,6 +11,7 @@ const ProfileScreen = ({ location, history }) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [message, setMessage] = useState('')
+  const [variant, setVariant] = useState('success')
 
   const dispatch = useDispatch()
 
@@ -27,18 +28,24 @@ const ProfileScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push('/login')
     } else {
-      if (!user.name) {
+      if (!user.name || success) {
         dispatch(getUserDetails())
       } else {
         setName(user.name)
         setEmail(user.email)
       }
+
+      if (success) {
+        setVariant('success')
+        setMessage('Profile Updated')
+      }
     }
-  }, [dispatch, history, user, userInfo])
+  }, [dispatch, history, user, userInfo, success])
 
   const submitHandler = (e) => {
     e.preventDefault()
     if (password !== confirmPassword) {
+      setVariant('danger')
       setMessage('Passwords do not match')
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }))
@@ -49,9 +56,8 @@ const ProfileScreen = ({ location, history }) => {
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-        {message && <Message variant='danger'>{message}</Message>}
+        {message && <Message variant={variant}>{message}</Message>}
         {error && <Message variant='danger'>{error}</Message>}
-        {success && <Message variant='success'>Profile Updated</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId='name'>
