@@ -80,6 +80,8 @@ export const register = (name, email, password) => async (dispatch) => {
 
 export const getUserDetails = () => async (dispatch, getState) => {
   try {
+    dispatch({ type: USER_UPDATE_PROFILE_RESET })
+
     dispatch({ type: USER_DETAILS_REQUEST })
 
     const {
@@ -98,10 +100,6 @@ export const getUserDetails = () => async (dispatch, getState) => {
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data
-    })
-
-    dispatch({
-      type: USER_UPDATE_PROFILE_RESET
     })
   } catch (error) {
     dispatch({
