@@ -43,6 +43,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
 export const getOrderDetails = (id) => async (dispatch, getState) => {
   try {
+    dispatch({ type: ORDER_PAY_RESET })
+
     dispatch({ type: ORDER_DETAILS_REQUEST })
 
     const {
