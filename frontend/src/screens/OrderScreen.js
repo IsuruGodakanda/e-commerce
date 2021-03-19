@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { getOrderDetails } from '../actions/orderActions'
 
-const OrderScreen = ({ match, history }) => {
+const OrderScreen = ({ match }) => {
   const orderId = match.params.id
   const dispatch = useDispatch()
 
