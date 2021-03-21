@@ -22,14 +22,14 @@ const ProductListScreen = ({ history, match }) => {
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (!userInfo.isAdmin) {
-      history.push('/login')
-    }
-
-    if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`)
+    if (userInfo && userInfo.isAdmin) {
+      if (successCreate) {
+        history.push(`/admin/product/${createdProduct._id}/edit`)
+      } else {
+        dispatch(listProducts())
+      }
     } else {
-      dispatch(listProducts())
+      history.push('/login')
     }
   }, [dispatch, history, userInfo, successDelete, successCreate, createdProduct])
 
