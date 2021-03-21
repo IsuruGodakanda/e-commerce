@@ -41,6 +41,8 @@ const ProductScreen = ({ history, match }) => {
     dispatch(createProductReview(match.params.id, { rating, comment }))
   }
 
+  const deleteReviewHandler = (id) => {}
+
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
@@ -127,7 +129,18 @@ const ProductScreen = ({ history, match }) => {
                     <strong>{review.name}</strong>
                     <Rating rating={review.rating} />
                     <p>{review.createdAt.substring(0, 10)}</p>
-                    <p>{review.comment}</p>
+                    <Row>
+                      <Col>
+                        <p>{review.comment}</p>
+                      </Col>
+                      {userInfo && (review.user === userInfo._id || userInfo.isAdmin) && (
+                        <Col className='text-right'>
+                          <Button variant='danger' className='btn-sm' onClick={() => deleteReviewHandler(review._id)}>
+                            <i className='fas fa-trash' />
+                          </Button>
+                        </Col>
+                      )}
+                    </Row>
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
