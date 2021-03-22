@@ -5,6 +5,7 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 
 const ProductScreen = ({ history, match }) => {
@@ -54,6 +55,7 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
+          <Meta title={`Product | ${match.params.id}`} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />

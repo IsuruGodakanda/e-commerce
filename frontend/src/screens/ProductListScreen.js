@@ -4,6 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Meta from '../components/Meta'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 
 const ProductListScreen = ({ history, match }) => {
@@ -45,6 +46,7 @@ const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
+      <Meta title='Products' />
       <Row className='align-items-center'>
         <Col>
           <h1>Products</h1>
